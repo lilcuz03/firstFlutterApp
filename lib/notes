@@ -1,0 +1,456 @@
+main
+/*
+import 'package:flutter/material.dart';
+import 'package:my_first_flutter_app/route.dart';
+import 'package:my_first_flutter_app/views/all_tickets.dart';
+import 'package:my_first_flutter_app/views/hotels.dart';
+
+void main() {
+  runApp(MaterialApp(
+    // home: Routing(),
+    routes: {
+      '/': (context) => const Routing(),
+      'all_tickets':(context)=> const AllTickets(),
+      'hotels':(context)=> const Hotels()
+    },
+    debugShowCheckedModeBanner: false,
+  ));
+}
+*/
+
+HomeView
+
+/*
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:my_first_flutter_app/Media/media.dart';
+import 'package:my_first_flutter_app/base/reusable_widgets/book.dart';
+import 'package:my_first_flutter_app/base/reusable_widgets/double_text.dart';
+import 'package:my_first_flutter_app/base/reusable_widgets/full_ticket.dart';
+import 'package:my_first_flutter_app/base/reusable_widgets/greeting.dart';
+import 'package:my_first_flutter_app/base/reusable_widgets/search.dart';
+import 'package:my_first_flutter_app/json/all_json.dart';
+import 'package:my_first_flutter_app/views/all_tickets.dart';
+import 'package:my_first_flutter_app/views/hotels.dart';
+
+class HomeView extends StatefulWidget {
+  // final List<Map<String,dynamic>> ticket;
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  @override
+  Widget build(BuildContext context) {
+    // final size = MediaQuery.of(context).size;
+
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Greeting(),
+                SizedBox(
+                  height: 5,
+                ),
+                Book(text: 'BOOK TICKETS')
+              ],
+            ),
+            Container(
+              width: 50,
+              height: 50,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                Media.logo,
+              ))),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        const Search(),
+        const SizedBox(
+          height: 10,
+        ),
+        DoubleText(
+          bigText: 'Upcoming Flights',
+          smallText: 'View all',
+          func: () => Navigator.pushNamed(context, 'all_tickets'),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+              children: allTickets
+                  .map((singleTicket) => FullTicket(ticket: singleTicket))
+                  .toList()),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        DoubleText(
+          bigText: 'Hotels',
+          smallText: 'View all',
+          func: () => Navigator.pushNamed(context, 'hotels'),
+        ),
+      ],
+    );
+  }
+}
+*/
+
+route
+
+// import 'package:flutter/material.dart';
+// import 'package:my_first_flutter_app/icons/icons.dart';
+// import 'package:my_first_flutter_app/styles/app_Styles.dart';
+// import 'package:my_first_flutter_app/views/home_view.dart';
+// import 'package:my_first_flutter_app/views/profile_view.dart';
+// import 'package:my_first_flutter_app/views/search_view.dart';
+// import 'package:my_first_flutter_app/views/ticket_view.dart';
+
+// class Routing extends StatefulWidget {
+//   const Routing({super.key});
+
+//   @override
+//   State<Routing> createState() => _RoutingState();
+// }
+
+// class _RoutingState extends State<Routing> {
+//   int currentWidget = 0;
+//   final allWidgets = [
+//     const HomeView(),
+//     const ProfileView(),
+//     const TicketView(),
+//     const SearchView()
+//   ];
+
+  
+
+//   void changeScreen(int index) {
+//     setState(() {
+//       currentWidget = index;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+      
+//       backgroundColor: AppStyles.appBg,
+//       body: ListView(children: [
+//         Container(
+//             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+//             color: AppStyles.appBg,
+//             child: allWidgets[currentWidget])
+//       ]),
+//       bottomNavigationBar: BottomNavigationBar(
+//           selectedItemColor: AppIcons.selectedIcon,
+//           unselectedItemColor: AppIcons.unSelectedIcon,
+//           showSelectedLabels: false,
+//           currentIndex: currentWidget,
+//           onTap: changeScreen,
+//           items: const [
+//             BottomNavigationBarItem(
+//                 backgroundColor: AppIcons.bottomNavBg,
+//                 icon: AppIcons.home,
+//                 activeIcon: AppIcons.homeFilled,
+//                 label: 'Home'),
+//             BottomNavigationBarItem(
+//                 icon: AppIcons.profile,
+//                 activeIcon: AppIcons.profileFilled,
+//                 label: 'profile'),
+//             BottomNavigationBarItem(
+//                 icon: AppIcons.ticket,
+//                 activeIcon: AppIcons.ticketFilled,
+//                 label: 'ticket'),
+//             BottomNavigationBarItem(
+//                 icon: AppIcons.search,
+//                 activeIcon: AppIcons.searchFilled,
+//                 label: 'search'),
+//           ]),
+//     );
+//   }
+// }
+
+
+FullTicket
+
+// import 'package:flutter/material.dart';
+// import 'package:my_first_flutter_app/base/reusable_widgets/lower_ticket.dart';
+// import 'package:my_first_flutter_app/base/reusable_widgets/tired_box.dart';
+// import 'package:my_first_flutter_app/base/reusable_widgets/upper_ticket.dart';
+// import 'package:my_first_flutter_app/json/all_json.dart';
+// // import 'package:my_first_flutter_app/json/all_json.dart';
+// import 'package:my_first_flutter_app/styles/app_Styles.dart';
+
+// class FullTicket extends StatefulWidget {
+//   final Map<String , dynamic> ticket;
+//   const FullTicket({super.key , required this.ticket});
+
+//   @override
+//   State<FullTicket> createState() => _TicketState();
+// }
+//     // final Map<String , dynamic> myTicket = FullTicket.fullTicket;
+
+// class _TicketState extends State<FullTicket> {
+//   @override
+//   Widget build(BuildContext context) {
+//     final size = MediaQuery.of(context).size;
+//     return Container(
+//       width: size.width * 0.85,
+//       height: 200,
+//       padding: const EdgeInsets.symmetric(horizontal: 20),
+//       child: Column(
+//         children: [
+//           Container(
+//             height: 70,
+//             padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+//             decoration: const BoxDecoration(
+//                 color: AppStyles.upperTicketColor,
+//                 borderRadius: BorderRadius.only(
+//                     topRight: Radius.circular(10),
+//                     topLeft: Radius.circular(10))),
+//              child: UpperTicket(upperItems:widget.ticket),
+    
+          
+//           ),
+//           const TiredBox(),
+//           Container(
+//             padding: const EdgeInsets.fromLTRB(10, 5, 10, 0),
+//             height: 70,
+//             decoration: const BoxDecoration(
+//                 color: AppStyles.lowerTicketColor,
+//                 borderRadius: BorderRadius.only(
+//                     bottomRight: Radius.circular(10),
+//                     bottomLeft: Radius.circular(10))),
+//             child:LowerTicket(lowerTicket: widget.ticket),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+UpperTicket
+
+
+// import 'package:flutter/material.dart';
+// import 'package:my_first_flutter_app/base/reusable_widgets/full_ticket.dart';
+// import 'package:my_first_flutter_app/base/reusable_widgets/plane_icon.dart';
+// import 'package:my_first_flutter_app/base/reusable_widgets/ticket_text.dart';
+// import 'package:my_first_flutter_app/json/all_json.dart';
+
+// class UpperTicket extends StatefulWidget {
+//   final Map<String, dynamic> upperItems;
+//   const UpperTicket({super.key, required this.upperItems});
+
+//   @override
+//   State<UpperTicket> createState() => _UpperTicketState();
+// }
+
+// class _UpperTicketState extends State<UpperTicket> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: [
+//         Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             TicketText(text: widget.upperItems['from']['code']),
+//             const SizedBox(height: 5),
+//             TicketText(text: widget.upperItems['from']['name']),
+//           ],
+//         ),
+//         Column(
+//           crossAxisAlignment: CrossAxisAlignment.center,
+//           children: [
+//             const PlaneIcon(),
+//             TicketText(text: widget.upperItems['travel_time']),
+//           ],
+//         ),
+//         Column(
+//           crossAxisAlignment: CrossAxisAlignment.end,
+//           children: [
+//             TicketText(text: widget.upperItems['to']['code']),
+//             const SizedBox(height: 5),
+//             TicketText(text: widget.upperItems['to']['name']),
+//           ],
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+all_json
+
+// List<Map<String , dynamic>> allTickets = [
+//   {
+//     'from': {
+//       'code':'NYC',
+//       'name': 'NEW-YORK'
+//     },
+//     'to':{
+//       'code':'LDN',
+//       'name': 'LONDON'
+//     },
+//     'travel_time': '8H 30M',
+//     'departure_time': '08 : 00 AM',
+//     'date': '13 August',
+//     'number' : '24'
+
+//   },
+  
+//   {
+//     "from": {
+//       "code": "NYC",
+//       "name": "NEW-YORK"
+//     },
+//     "to": {
+//       "code": "LDN",
+//       "name": "LONDON"
+//     },
+//     "travel_time": "8H 30M",
+//     "departure_time": "08:00 AM",
+//     "date": "13 August",
+//     "number": "24"
+//   },
+//   {
+//     "from": {
+//       "code": "SFO",
+//       "name": "SAN FRANCISCO"
+//     },
+//     "to": {
+//       "code": "SYD",
+//       "name": "SYDNEY"
+//     },
+//     "travel_time": "15H 45M",
+//     "departure_time": "10:00 PM",
+//     "date": "14 August",
+//     "number": "78"
+//   },
+//   {
+//     "from": {
+//       "code": "LAX",
+//       "name": "LOS ANGELES"
+//     },
+//     "to": {
+//       "code": "HKG",
+//       "name": "HONG KONG"
+//     },
+//     "travel_time": "14H 30M",
+//     "departure_time": "11:00 PM",
+//     "date": "15 August",
+//     "number": "55"
+//   },
+//   {
+//     "from": {
+//       "code": "CHI",
+//       "name": "CHICAGO"
+//     },
+//     "to": {
+//       "code": "AMS",
+//       "name": "AMSTERDAM"
+//     },
+//     "travel_time": "7H 50M",
+//     "departure_time": "04:30 PM",
+//     "date": "16 August",
+//     "number": "62"
+//   },
+//   {
+//     "from": {
+//       "code": "BOS",
+//       "name": "BOSTON"
+//     },
+//     "to": {
+//       "code": "PAR",
+//       "name": "PARIS"
+//     },
+//     "travel_time": "7H 00M",
+//     "departure_time": "06:00 PM",
+//     "date": "17 August",
+//     "number": "43"
+//   },
+//   {
+//     "from": {
+//       "code": "MIA",
+//       "name": "MIAMI"
+//     },
+//     "to": {
+//       "code": "MAD",
+//       "name": "MADRID"
+//     },
+//     "travel_time": "9H 10M",
+//     "departure_time": "05:15 PM",
+//     "date": "18 August",
+//     "number": "31"
+//   },
+//   {
+//     "from": {
+//       "code": "SEA",
+//       "name": "SEATTLE"
+//     },
+//     "to": {
+//       "code": "NRT",
+//       "name": "TOKYO"
+//     },
+//     "travel_time": "11H 20M",
+//     "departure_time": "01:00 PM",
+//     "date": "19 August",
+//     "number": "90"
+//   },
+//   {
+//     "from": {
+//       "code": "ATL",
+//       "name": "ATLANTA"
+//     },
+//     "to": {
+//       "code": "JNB",
+//       "name": "JOHANNESBURG"
+//     },
+//     "travel_time": "15H 30M",
+//     "departure_time": "07:30 PM",
+//     "date": "20 August",
+//     "number": "72"
+//   },
+//   {
+//     "from": {
+//       "code": "DFW",
+//       "name": "DALLAS"
+//     },
+//     "to": {
+//       "code": "FRA",
+//       "name": "FRANKFURT"
+//     },
+//     "travel_time": "10H 20M",
+//     "departure_time": "09:45 AM",
+//     "date": "21 August",
+//     "number": "84"
+//   },
+//   {
+//     "from": {
+//       "code": "DEN",
+//       "name": "DENVER"
+//     },
+//     "to": {
+//       "code": "MEX",
+//       "name": "MEXICO CITY"
+//     },
+//     "travel_time": "4H 00M",
+//     "departure_time": "02:15 PM",
+//     "date": "22 August",
+//     "number": "66"
+//   }
+
+
+// ];
